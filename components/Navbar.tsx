@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
               <img
                 src={LOGO_URL}
                 alt="GreenRx Logo"
-                className="h-12 w-auto object-contain"
+                className="h-16 w-auto object-contain"
                 loading="eager"
                 decoding="async"
               />

@@ -1,6 +1,26 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Lazily create the client and handle missing API key gracefully to avoid crash on load
+function getApiKey(): string | undefined {
+  // Vite replaces these at build time if defined in env or via define()
+  // Try multiple names to be flexible with env configuration
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const p: any = process as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const i: any = (import.meta as any).env || {};
+  return (
+    (p?.env?.API_KEY as string | undefined) ||
+    (p?.env?.GEMINI_API_KEY as string | undefined) ||
+    (i?.VITE_API_KEY as string | undefined) ||
+    (i?.VITE_GEMINI_API_KEY as string | undefined)
+  );
+}
+
+function getClient(): GoogleGenAI | null {
+  const key = getApiKey();
+  if (!key) return null;
+  return new GoogleGenAI({ apiKey: key });
+}
 
 const SYSTEM_INSTRUCTION = `
 You are 'GreenRx AI', a helpful, professional, and empathetic telehealth assistant for GreenRx.com.au.
@@ -17,8 +37,12 @@ Keep responses concise (under 100 words) and friendly.
 
 export const sendChatMessage = async (history: string[], userMessage: string): Promise<string> => {
   try {
+    const client = getClient();
+    if (!client) {
+      return "AI is not configured yet. Please try again later.";
+    }
     // Using the recommended model for text tasks
-    const response: GenerateContentResponse = await ai.models.generateContent({
+    const response: GenerateContentResponse = await client.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: [
         ...history.map(msg => ({ role: 'user', parts: [{ text: msg }] })), // Simplified history mapping

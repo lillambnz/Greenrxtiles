@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CalendarCheck, Video, Stethoscope, Pill, Activity as ActivityIcon, Wifi, Package, HeartHandshake } from 'lucide-react';
 // noop: trigger Cloudflare Pages deployment
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -196,18 +197,23 @@ const App: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-stretch">
               {[
-                { n: 1, t: 'Book online', d: 'Choose a time that suits you and complete a brief intake.' },
-                { n: 2, t: 'Consult a doctor', d: 'Discuss your health goals and medical history via telehealth.' },
-                { n: 3, t: 'Clinical decision', d: 'Your doctor will advise whether any treatment is appropriate for you.' },
-                { n: 4, t: 'Prescription & supply', d: 'If suitable, scripts are sent digitally. Dispensing and delivery arranged.' },
-                { n: 5, t: 'Follow‑up care', d: 'Check‑ins to monitor progress and adjust care where appropriate.' },
-              ].map(step => (
-                <div key={step.n} className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-                  <div className="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-semibold mb-3">{step.n}</div>
-                  <h3 className="font-semibold text-slate-900 mb-1">{step.t}</h3>
-                  <p className="text-sm text-slate-600">{step.d}</p>
-                </div>
-              ))}
+                { n: 1, t: 'Book online', d: 'Choose a time that suits you and complete a brief intake.', icon: CalendarCheck },
+                { n: 2, t: 'Consult a doctor', d: 'Discuss your health goals and medical history via telehealth.', icon: Video },
+                { n: 3, t: 'Clinical decision', d: 'Your doctor will advise whether any treatment is appropriate for you.', icon: Stethoscope },
+                { n: 4, t: 'Prescription & supply', d: 'If suitable, scripts are sent digitally. Dispensing and delivery arranged.', icon: Pill },
+                { n: 5, t: 'Follow‑up care', d: 'Check‑ins to monitor progress and adjust care where appropriate.', icon: ActivityIcon },
+              ].map(step => {
+                const Icon = step.icon;
+                return (
+                  <div key={step.n} className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                    <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 border border-emerald-100">
+                      <Icon size={20} />
+                    </div>
+                    <h3 className="font-semibold text-slate-900 mb-1">{step.t}</h3>
+                    <p className="text-sm text-slate-600">{step.d}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -224,25 +230,31 @@ const App: React.FC = () => {
               {[
                 {
                   title: "100% Online",
-                  desc: "No waiting rooms. Consult with doctors via video or phone call from anywhere in Australia."
+                  desc: "No waiting rooms. Consult with doctors via video or phone call from anywhere in Australia.",
+                  icon: Wifi
                 },
                 {
                   title: "Discreet Delivery",
-                  desc: "Prescriptions sent to your phone or medication delivered directly to your door in discreet packaging."
+                  desc: "Prescriptions sent to your phone or medication delivered directly to your door in discreet packaging.",
+                  icon: Package
                 },
                 {
                   title: "Ongoing Support",
-                  desc: "Follow-up consultations and dedicated patient support team available 7 days a week."
+                  desc: "Follow-up consultations and dedicated patient support team available 7 days a week.",
+                  icon: HeartHandshake
                 }
-              ].map((feature, idx) => (
-                <div key={idx} className="text-center p-6">
-                  <div className="w-16 h-16 bg-emerald-100 rounded-2xl mx-auto mb-6 flex items-center justify-center text-xl font-bold text-emerald-700">
-                    {idx + 1}
+              ].map((feature, idx) => {
+                const Icon = feature.icon;
+                return (
+                  <div key={idx} className="text-center p-6">
+                    <div className="w-16 h-16 bg-emerald-100 rounded-2xl mx-auto mb-6 flex items-center justify-center text-emerald-700">
+                      <Icon size={28} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
+                    <p className="text-slate-600">{feature.desc}</p>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                  <p className="text-slate-600">{feature.desc}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>

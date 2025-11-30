@@ -7,8 +7,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onOpenTerms, onOpenPrivacy }) => {
-  // Please ensure you have uploaded 'logo.png' to your project root
-  const LOGO_URL = "./logo.png";
+  const LOGO_URL = "/greenrx-logo-new.png";
 
   return (
     <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">

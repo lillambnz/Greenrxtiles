@@ -21,8 +21,7 @@ const Navbar: React.FC = () => {
   const hoverColor = isScrolled ? 'hover:text-emerald-600' : 'hover:text-white';
   const mobileMenuButton = isScrolled ? 'text-slate-700' : 'text-white';
 
-  // Please ensure you have uploaded 'logo.png' to your project root
-  const LOGO_URL = "./logo.png";
+  const LOGO_URL = "/greenrx-logo-new.png";
   const BOOKING_URL = "https://www.halaxy.com/book/appointment/gp-general-practitioner/dr-ameer-khan/1446371/1123911";
 
   return (

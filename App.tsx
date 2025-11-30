@@ -179,9 +179,40 @@ const App: React.FC = () => {
     <div className="min-h-screen flex flex-col bg-slate-50">
       <Navbar />
       <main className="flex-grow">
-        <Hero />
+        {/* Home Anchor */}
+        <div id="home" />
+        {/* Services Section (Hero) */}
+        <section id="services">
+          <Hero />
+        </section>
         
-        {/* Simple Info Section underneath Hero to add page weight */}
+        {/* How it Works */}
+        <section id="how-it-works" className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">How it Works</h2>
+              <p className="text-slate-600">A simple, clinician-led process from booking to follow-up.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-stretch">
+              {[
+                { n: 1, t: 'Book online', d: 'Choose a time that suits you and complete a brief intake.' },
+                { n: 2, t: 'Consult a doctor', d: 'Discuss your health goals and medical history via telehealth.' },
+                { n: 3, t: 'Clinical decision', d: 'Your doctor will advise whether any treatment is appropriate for you.' },
+                { n: 4, t: 'Prescription & supply', d: 'If suitable, scripts are sent digitally. Dispensing and delivery arranged.' },
+                { n: 5, t: 'Follow‑up care', d: 'Check‑ins to monitor progress and adjust care where appropriate.' },
+              ].map(step => (
+                <div key={step.n} className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
+                  <div className="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-semibold mb-3">{step.n}</div>
+                  <h3 className="font-semibold text-slate-900 mb-1">{step.t}</h3>
+                  <p className="text-sm text-slate-600">{step.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Simple Info Section */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -212,6 +243,50 @@ const App: React.FC = () => {
                   <p className="text-slate-600">{feature.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="py-20 bg-slate-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
+              <p className="text-slate-600">General information about our Alternate Health service. This is not medical advice.</p>
+            </div>
+
+            <div className="max-w-3xl mx-auto space-y-4">
+              {[
+                {
+                  q: 'What is Alternate Health at GreenRx?',
+                  a: 'Telehealth consultations with registered doctors to discuss your health goals and whether certain therapies may be clinically appropriate for you. We do not advertise prescription-only medicines.'
+                },
+                {
+                  q: 'Will I receive a prescription?',
+                  a: 'Not necessarily. Any prescription is at the sole discretion of the doctor after assessing your individual circumstances, medical history, and suitability. Treatment is not guaranteed.'
+                },
+                {
+                  q: 'Why don\'t you list product names?',
+                  a: 'Australian TGA advertising rules restrict promoting prescription medicines to the public. Your doctor can discuss options during your consultation if clinically appropriate.'
+                },
+                {
+                  q: 'Who is eligible?',
+                  a: 'Adults 18+ living in Australia. Eligibility and suitability are determined by the consulting doctor based on clinical need and safety.'
+                },
+                {
+                  q: 'Is this an emergency service?',
+                  a: 'No. If you need urgent help, call 000 or visit your nearest emergency department.'
+                },
+              ].map((item, idx) => (
+                <details key={idx} className="bg-white border border-slate-200 rounded-xl p-5">
+                  <summary className="cursor-pointer font-semibold text-slate-900">{item.q}</summary>
+                  <p className="mt-3 text-slate-700 text-sm">{item.a}</p>
+                </details>
+              ))}
+
+              <p className="text-xs text-slate-500 mt-6">
+                Information provided is general in nature and does not constitute medical advice. Always consult a registered health professional. GreenRx complies with Australian TGA advertising guidelines and does not promote specific prescription medicines.
+              </p>
             </div>
           </div>
         </section>

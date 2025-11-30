@@ -23,6 +23,7 @@ const Navbar: React.FC = () => {
 
   // Please ensure you have uploaded 'logo.png' to your project root
   const LOGO_URL = "./logo.png";
+  const BOOKING_URL = "https://www.halaxy.com/book/appointment/gp-general-practitioner/dr-ameer-khan/1446371/1123911";
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${navBg}`}>
@@ -50,13 +51,18 @@ const Navbar: React.FC = () => {
                 {item}
               </a>
             ))}
-            <button className={`px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg ${
-              isScrolled 
-                ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-emerald-600/20' 
-                : 'bg-white text-emerald-900 hover:bg-emerald-50 shadow-black/20'
-            }`}>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg ${
+                isScrolled 
+                  ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-emerald-600/20' 
+                  : 'bg-white text-emerald-900 hover:bg-emerald-50 shadow-black/20'
+              }`}
+            >
               Book Now
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -86,9 +92,15 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             <div className="pt-4">
-              <button className="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center w-full bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 Book Now
-              </button>
+              </a>
             </div>
           </div>
         </div>

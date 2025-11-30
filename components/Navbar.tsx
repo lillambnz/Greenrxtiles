@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
               <img
                 src={LOGO_URL}
                 alt="GreenRx Logo"
-                className="h-24 w-auto object-contain"
+                className="h-20 md:h-24 lg:h-28 w-auto object-contain"
                 loading="eager"
                 decoding="async"
               />
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(/\s/g, '-')}`}
-                className={`${textColor} ${hoverColor} font-medium transition-colors`}
+                className={`${textColor} ${hoverColor} font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 rounded-md`}
               >
                 {item}
               </a>
@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className={`px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg ${
+              className={`px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40 ${
                 isScrolled 
                   ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-emerald-600/20' 
                   : 'bg-white text-emerald-900 hover:bg-emerald-50 shadow-black/20'
@@ -89,7 +89,7 @@ const Navbar: React.FC = () => {
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(/\s/g, '-')}`}
-                className="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-md"
+                className="block px-3 py-3 text-base font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item}

@@ -10,7 +10,17 @@
       body { font-family: 'Inter', sans-serif; }
       /* Smooth scroll behavior */
       html { scroll-behavior: smooth; }
+      /* Simple reveal-on-scroll animation */
+      .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+      .reveal-visible { opacity: 1; transform: translateY(0); }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal { transition: none; transform: none; }
+      }
     </style>
+    <meta property="og:title" content="GreenRx - Telehealth Australia" />
+    <meta property="og:description" content="Book online, consult a doctor, and get ongoing support — Australia-wide telehealth with GreenRx." />
+    <meta property="og:image" content="/greenrx-logo-new.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <!-- All deps bundled by Vite; no import map needed -->
     <link rel="icon" type="image/png" href="/greenrx-logo-new.png?v=1" />
     <link rel="apple-touch-icon" href="/greenrx-logo-new.png?v=1" />

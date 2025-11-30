@@ -175,6 +175,24 @@ Phone: +61 2 3456 7890`;
 
 const App: React.FC = () => {
   const [activeLegalDoc, setActiveLegalDoc] = useState<'terms' | 'privacy' | null>(null);
+  const BOOKING_URL = "https://www.halaxy.com/book/appointment/gp-general-practitioner/dr-ameer-khan/1446371/1123911";
+
+  React.useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>('.reveal');
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('reveal-visible');
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
@@ -211,10 +229,10 @@ const App: React.FC = () => {
                   return (
                     <div
                       key={step.n}
-                      className="group relative rounded-2xl bg-white/70 backdrop-blur border border-slate-200/60 shadow-sm hover:shadow-xl transition-all p-6 hover:-translate-y-1"
+                      className="reveal group relative rounded-2xl bg-white/70 backdrop-blur border border-slate-200/60 shadow-sm hover:shadow-xl transition-all p-6 hover:-translate-y-1"
                     >
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg ring-1 ring-white/40">
+                        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg ring-1 ring-white/40 transform transition-transform group-hover:scale-105">
                           <Icon size={22} />
                         </div>
                         <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">Step {step.n}</span>
@@ -226,6 +244,17 @@ const App: React.FC = () => {
                   );
                 })}
               </div>
+            </div>
+
+            <div className="mt-12 text-center">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 text-white font-semibold shadow-lg hover:bg-emerald-700 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+              >
+                Book Now
+              </a>
             </div>
           </div>
         </section>
@@ -260,9 +289,9 @@ const App: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="group relative rounded-2xl p-7 bg-white/70 backdrop-blur border border-slate-200/60 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 text-center"
+                    className="reveal group relative rounded-2xl p-7 bg-white/70 backdrop-blur border border-slate-200/60 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 text-center"
                   >
-                    <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg ring-1 ring-white/40">
+                    <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg ring-1 ring-white/40 transform transition-transform group-hover:scale-105">
                       <Icon size={28} />
                     </div>
                     <h3 className="text-xl font-bold text-slate-900 mb-2">{feature.title}</h3>
@@ -271,6 +300,17 @@ const App: React.FC = () => {
                   </div>
                 );
               })}
+            </div>
+
+            <div className="mt-12 text-center">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 text-white font-semibold shadow-lg hover:bg-emerald-700 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/40"
+              >
+                Book Now
+              </a>
             </div>
           </div>
         </section>

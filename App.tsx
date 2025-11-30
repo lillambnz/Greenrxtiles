@@ -188,41 +188,53 @@ const App: React.FC = () => {
         </section>
         
         {/* How it Works */}
-        <section id="how-it-works" className="py-20 bg-white">
+        <section id="how-it-works" className="py-24 bg-gradient-to-b from-white to-slate-50">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">How it Works</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">How it Works</h2>
               <p className="text-slate-600">A simple, clinician-led process from booking to follow-up.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-stretch">
-              {[
-                { n: 1, t: 'Book online', d: 'Choose a time that suits you and complete a brief intake.', icon: CalendarCheck },
-                { n: 2, t: 'Consult a doctor', d: 'Discuss your health goals and medical history via telehealth.', icon: Video },
-                { n: 3, t: 'Clinical decision', d: 'Your doctor will advise whether any treatment is appropriate for you.', icon: Stethoscope },
-                { n: 4, t: 'Prescription & supply', d: 'If suitable, scripts are sent digitally. Dispensing and delivery arranged.', icon: Pill },
-                { n: 5, t: 'Follow‑up care', d: 'Check‑ins to monitor progress and adjust care where appropriate.', icon: ActivityIcon },
-              ].map(step => {
-                const Icon = step.icon;
-                return (
-                  <div key={step.n} className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-                    <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 border border-emerald-100">
-                      <Icon size={20} />
+            <div className="relative">
+              {/* Progress line on desktop */}
+              <div className="hidden md:block absolute left-0 right-0 top-[46px] h-[2px] bg-gradient-to-r from-emerald-300/40 via-teal-300/40 to-emerald-300/40" />
+
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-stretch relative">
+                {[
+                  { n: 1, t: 'Book online', d: 'Choose a time that suits you and complete a brief intake.', icon: CalendarCheck },
+                  { n: 2, t: 'Consult a doctor', d: 'Discuss your health goals and medical history via telehealth.', icon: Video },
+                  { n: 3, t: 'Clinical decision', d: 'Doctor advises whether any treatment is appropriate for you.', icon: Stethoscope },
+                  { n: 4, t: 'Prescription & supply', d: 'If suitable, scripts are sent digitally. Dispensing and delivery arranged.', icon: Pill },
+                  { n: 5, t: 'Follow‑up care', d: 'Check‑ins to monitor progress and adjust care where appropriate.', icon: ActivityIcon },
+                ].map(step => {
+                  const Icon = step.icon;
+                  return (
+                    <div
+                      key={step.n}
+                      className="group relative rounded-2xl bg-white/70 backdrop-blur border border-slate-200/60 shadow-sm hover:shadow-xl transition-all p-6 hover:-translate-y-1"
+                    >
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg ring-1 ring-white/40">
+                          <Icon size={22} />
+                        </div>
+                        <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full">Step {step.n}</span>
+                      </div>
+                      <h3 className="font-semibold text-slate-900 mb-1 tracking-tight">{step.t}</h3>
+                      <p className="text-sm text-slate-600 leading-relaxed">{step.d}</p>
+                      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-0 ring-emerald-500/0 group-hover:ring-2 group-hover:ring-emerald-400/40 transition" />
                     </div>
-                    <h3 className="font-semibold text-slate-900 mb-1">{step.t}</h3>
-                    <p className="text-sm text-slate-600">{step.d}</p>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Simple Info Section */}
-        <section className="py-20 bg-white">
+        {/* Why Choose */}
+        <section className="py-24 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl font-bold text-slate-900 mb-4">Why Choose GreenRx?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Why Choose GreenRx?</h2>
               <p className="text-slate-600">We streamline the process of getting the care you need without the wait.</p>
             </div>
             
@@ -246,12 +258,16 @@ const App: React.FC = () => {
               ].map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
-                  <div key={idx} className="text-center p-6">
-                    <div className="w-16 h-16 bg-emerald-100 rounded-2xl mx-auto mb-6 flex items-center justify-center text-emerald-700">
+                  <div
+                    key={idx}
+                    className="group relative rounded-2xl p-7 bg-white/70 backdrop-blur border border-slate-200/60 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 text-center"
+                  >
+                    <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg ring-1 ring-white/40">
                       <Icon size={28} />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                    <p className="text-slate-600">{feature.desc}</p>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">{feature.title}</h3>
+                    <p className="text-slate-600 leading-relaxed">{feature.desc}</p>
+                    <div className="pointer-events-none absolute inset-0 rounded-2xl ring-0 ring-emerald-500/0 group-hover:ring-2 group-hover:ring-emerald-400/40 transition" />
                   </div>
                 );
               })}

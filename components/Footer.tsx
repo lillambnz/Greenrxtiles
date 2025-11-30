@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({ onOpenTerms, onOpenPrivacy }) => {
               <img
                 src={LOGO_URL}
                 alt="GreenRx Logo"
-                className="h-[72px] w-auto object-contain"
+                className="h-24 w-auto object-contain"
                 loading="lazy"
                 decoding="async"
               />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// noop: trigger Cloudflare Pages deployment
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/Footer';

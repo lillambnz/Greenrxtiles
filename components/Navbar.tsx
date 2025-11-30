@@ -35,7 +35,8 @@ const Navbar: React.FC = () => {
                 src={LOGO_URL}
                 alt="GreenRx Logo"
                 className="h-12 w-auto object-contain"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                loading="eager"
+                decoding="async"
               />
               <noscript>
                 <span className="text-xl font-semibold">GreenRx</span>

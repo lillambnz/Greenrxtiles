@@ -20,7 +20,8 @@ const Footer: React.FC<FooterProps> = ({ onOpenTerms, onOpenPrivacy }) => {
                 src={LOGO_URL}
                 alt="GreenRx Logo"
                 className="h-12 w-auto object-contain"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-6">

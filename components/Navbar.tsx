@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
   const hoverColor = isScrolled ? 'hover:text-emerald-600' : 'hover:text-white';
   const mobileMenuButton = isScrolled ? 'text-slate-700' : 'text-white';
 
-  const LOGO_URL = "/greenrx-logo-new.png";
+  const LOGO_URL = "/greenrx-logo-new.png?v=1";
   const BOOKING_URL = "https://www.halaxy.com/book/appointment/gp-general-practitioner/dr-ameer-khan/1446371/1123911";
 
   return (
@@ -31,11 +31,15 @@ const Navbar: React.FC = () => {
           {/* Logo - Image Based */}
           <div className="flex items-center">
             <div className="flex-shrink-0 cursor-pointer">
-              <img 
-                src={LOGO_URL} 
-                alt="GreenRx Logo" 
+              <img
+                src={LOGO_URL}
+                alt="GreenRx Logo"
                 className="h-12 w-auto object-contain"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
               />
+              <noscript>
+                <span className="text-xl font-semibold">GreenRx</span>
+              </noscript>
             </div>
           </div>
 

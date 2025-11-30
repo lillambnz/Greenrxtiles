@@ -7,7 +7,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onOpenTerms, onOpenPrivacy }) => {
-  const LOGO_URL = "/greenrx-logo-new.png";
+  const LOGO_URL = "/greenrx-logo-new.png?v=1";
 
   return (
     <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">
@@ -16,10 +16,11 @@ const Footer: React.FC<FooterProps> = ({ onOpenTerms, onOpenPrivacy }) => {
           {/* Brand Column */}
           <div className="col-span-1 md:col-span-1">
             <div className="mb-6">
-              <img 
-                src={LOGO_URL} 
-                alt="GreenRx Logo" 
+              <img
+                src={LOGO_URL}
+                alt="GreenRx Logo"
                 className="h-12 w-auto object-contain"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
               />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-6">
